@@ -13,7 +13,7 @@ COPY . .
 RUN rasa train
 
 # إعلام Render أن البورت المفتوح هو 5005
-EXPOSE 5005
+EXPOSE 5055
 
 # تشغيل السيرفر
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5005"]
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5055"]
