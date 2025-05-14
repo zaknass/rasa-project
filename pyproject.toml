@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "flight-bot"
+name = "flight_bot"
 version = "0.1.0"
 description = "A Rasa Assistant for travel agency"
 authors = ["ZAKARYA <info@blackbird.travel>"]
 #readme = "README.md"
-#packages = [{ include = "flight_bot", from = "src" }]
+packages = [{ include = "flight_bot", from = "src" }]
 # يُفضل استخدام Python 3.9 للحصول على استقرار أفضل مع Rasa
 # لكن إن كنت مصرًا على 3.10 فاستخدم هذا:
 # python = ">=3.10,<3.11"
