@@ -104,12 +104,12 @@ class ActionSendWhatsApp(Action):
         return "action_send_whatsapp"
 
     def run(self, dispatcher, tracker, domain):
-        token = "YOUR_PERMANENT_TOKEN"
-        phone_number_id = "YOUR_PHONE_NUMBER_ID"
-        recipient_number = "رقم المستخدم مع كود الدولة (بدون +)"
+        token = "EAARN1trbZBlQBO5ICWSZBOQIIIH26owLZAuKrp6zBa65Qr9BZBHGXhNgEUTJrCD0YEWMfsCAQfs2VH29U1I2bZB5GZAQVuZA8z1B9fGjZCKmNA1ZBmkE2dZAxuKsoCrZB6MvG3ylox9ecHRNzT2i633ZByZBZAerPxmZANgtbnZBZBxn0cqSrghAoVpoy4m1KHFFbZCIXmxy8VdVxrodmwu7GCVjxCoOqZC70msyN5LVZAS8POwqFeUyMDY8"
+        phone_number_id = "667189289803746"
+        recipient_number = "967780489090"
 
         headers = {
-            "Authorization": f"Bearer {token}",
+            "Authorization": f"Bearer EAARN1trbZBlQBO5ICWSZBOQIIIH26owLZAuKrp6zBa65Qr9BZBHGXhNgEUTJrCD0YEWMfsCAQfs2VH29U1I2bZB5GZAQVuZA8z1B9fGjZCKmNA1ZBmkE2dZAxuKsoCrZB6MvG3ylox9ecHRNzT2i633ZByZBZAerPxmZANgtbnZBZBxn0cqSrghAoVpoy4m1KHFFbZCIXmxy8VdVxrodmwu7GCVjxCoOqZC70msyN5LVZAS8POwqFeUyMDY8",
             "Content-Type": "application/json"
         }
 
@@ -120,7 +120,7 @@ class ActionSendWhatsApp(Action):
             "text": {"body": "مرحبا! تم تأكيد حجزك."}
         }
 
-        url = f"https://graph.facebook.com/v17.0/{phone_number_id}/messages"
+        url = f"https://graph.facebook.com/v17.0/{667189289803746}/messages"
 
         response = requests.post(url, headers=headers, json=message_data)
 
