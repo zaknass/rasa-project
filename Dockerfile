@@ -12,5 +12,8 @@ COPY . .
 # تدريب نموذج Rasa
 RUN rasa train
 
+# إعلام Render أن البورت المفتوح هو 5005
+EXPOSE 5005
+
 # تشغيل السيرفر
 CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5005"]
