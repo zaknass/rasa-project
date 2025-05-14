@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # تدريب نموذج Rasa
-RUN rasa run actions
+RUN rasa train
 
 # إعلام Render أن البورت المفتوح هو 5005
 EXPOSE 5055
