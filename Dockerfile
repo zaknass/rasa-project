@@ -1,23 +1,16 @@
-# استخدم بيئة رسمية لدعم Poetry
-FROM python:3.10
+FROM python:3.9
 
-# إعداد بيئة العمل
 WORKDIR /app
 
-# نسخ ملفات Poetry
-COPY pyproject.toml poetry.lock ./
+# نسخ requirements فقط وتثبيتها
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# تثبيت Poetry
-RUN pip install poetry
-
-# تثبيت التبعيات
-RUN poetry install
-
-# نسخ بقية الملفات
+# نسخ كل ملفات المشروع
 COPY . .
 
-# تدريب Rasa
-RUN poetry run rasa train
+# تدريب نموذج Rasa
+RUN rasa train
 
-# تشغيل Rasa عند الإقلاع
-CMD ["poetry", "run", "rasa", "run", "--enable-api", "--cors", "*", "--port", "5005"]
+# تشغيل السيرفر
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5005"]
