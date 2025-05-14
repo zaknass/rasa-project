@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "flight-bot"
+version = "0.1.0"
+description = "A Rasa Assistant for travel agency"
+authors = ["ZAKARYA <info@blackbird.travel>"]
+readme = "README.md"
+packages = [{ include = "flight_bot", from = "src" }]
+# يُفضل استخدام Python 3.9 للحصول على استقرار أفضل مع Rasa
+# لكن إن كنت مصرًا على 3.10 فاستخدم هذا:
+# python = ">=3.10,<3.11"
+# أو إن أردت الرجوع إلى بيئة مستقرة:
+# python = "^3.9"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+rasa = "3.6.16"
+rasa-sdk = "3.6.2"
+python-dotenv = "^1.0.1"
+requests = "^2.31.0"
+dateparser = "^1.2.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

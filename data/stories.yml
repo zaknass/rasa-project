@@ -1,0 +1,131 @@
+version: "3.1"
+
+stories:
+- story: سيناريو بحث رحلة ذكية
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: search_flight
+    - action: flight_search_form
+    - active_loop: flight_search_form
+    - action: flight_search_form
+    - active_loop: null
+    - action: action_submit_flight_search
+
+
+- story: ذهاب فقط - مسافر وحده
+  steps:
+    - intent: search_flight
+    - action: flight_search_form
+    - active_loop: flight_search_form
+    - slot_was_set:
+        - trip_type: "ذهاب فقط"
+        - passengers_type: "وحدي"
+    - active_loop: null
+    - action: action_submit_flight_search
+
+- story: ذهاب وعودة - مع العائلة - مع أطفال
+  steps:
+    - intent: search_flight
+    - action: flight_search_form
+    - active_loop: flight_search_form
+    - slot_was_set:
+        - trip_type: "ذهاب وعودة"
+        - passengers_type: "عائلي"
+        - children_count: "2"
+    - active_loop: null
+    - action: action_submit_flight_search
+
+- story: مسافر مع العائلة بدون أطفال
+  steps:
+    - intent: search_flight
+    - action: flight_search_form
+    - active_loop: flight_search_form
+    - slot_was_set:
+        - passengers_type: "عائلي"
+        - children_count: "0"
+    - active_loop: null
+    - action: action_submit_flight_search
+
+- story: incomplete user input — bot asks for rest
+  steps:
+    - intent: search_flight
+    - action: flight_search_form
+    - active_loop: flight_search_form
+    # هنا المستخدم لا يذكر كل التفاصيل، والنموذج يستكملها
+    - active_loop: null
+    - action: action_submit_flight_search
+
+- story: رحلة من صنعاء إلى دبي يوم الجمعة - مع العائلة وطفلين
+  steps:
+    - intent: search_flight
+      entities:
+        - departure_city: "صنعاء"
+        - destination_city: "دبي"
+        - departure_date: "الجمعة"
+    - action: flight_search_form
+    - active_loop: flight_search_form
+    - slot_was_set:
+        - passengers_type: "عائلي"
+        - children_count: "2"
+        - trip_type: "ذهاب وعودة"
+        - return_date: "الأحد القادم"
+    - active_loop: null
+    - action: action_submit_flight_search
+
+- story: Greet user
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- story: Ask departure city
+  steps:
+    - intent: provide_departure_city
+    - action: utter_ask_destination_city
+
+- story: Ask destination city
+  steps:
+    - intent: provide_destination_city
+    - action: utter_ask_departure_date
+
+- story: Ask departure date
+  steps:
+    - intent: provide_departure_date
+    - action: utter_ask_passengers_type
+
+- story: Ask trip type
+  steps:
+    - intent: provide_trip_type
+    - action: utter_ask_return_date
+
+- story: Ask children count
+  steps:
+    - intent: provide_children_count
+    - action: utter_ask_trip_type
+
+- story: Ask passenger count
+  steps:
+    - intent: provide_departure_date
+    - action: utter_ask_passengers_type
+    - intent: provide_passengers_type
+    - action: utter_ask_passengers_count
+    - intent: provide_passengers_count
+    - action: utter_ask_trip_type
+    - intent: provide_trip_type
+    - action: utter_ask_return_date
+    - intent: provide_return_date
+    - slot_was_set: 
+      - destination_city: "عمان"
+      - passengers_type:  "لوحدي"
+      - passengers_count: "1"
+      - trip_type:  "ذهاب واياب"
+      - return_date:  "15 ابريل"
+    - active_loop: null  
+    - action: action_submit_flight_search
+    - intent: cancel
+    - action: utter_cancel
+    - action: action_deactivate_loop
+    - active_loop:  null
+
+
+

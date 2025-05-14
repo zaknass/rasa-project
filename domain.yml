@@ -1,0 +1,146 @@
+version: "3.1"
+
+intents:
+  - greet
+  - search_flight
+  - cancel
+  - nlu_fallback
+  - provide_children_count
+  - provide_departure_city
+  - provide_departure_date
+  - provide_destination_city
+  - provide_passengers_type
+  - provide_return_date
+  - provide_trip_type
+  - provide_passengers_count
+
+entities:
+  - departure_city
+  - destination_city
+  - departure_date
+  - passengers_type
+  - children_count
+  - trip_type
+  - return_date
+  - passengers_count
+  - adult
+  - infant
+  - child
+
+
+slots:
+  departure_city:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: departure_city
+        conditions:
+          - active_loop: flight_search_form
+            requested_slot: departure_city
+ 
+  destination_city:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: destination_city
+        conditions:  
+          - active_loop:  flight_search_form 
+            requested_slot: destination_city
+
+  departure_date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: departure_date
+        conditions:
+          - active_loop:  flight_search_form
+            requested_slot: departure_date
+    
+  passengers_type:
+    type: text
+    influence_conversation: true 
+    mappings:
+      - type: from_entity
+        entity: passengers_type
+        conditions:
+          - active_loop:  flight_search_form
+            requested_slot: passengers_type 
+  
+  passengers_count:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: passengers_count
+        conditions:
+          - active_loop:  flight_search_form
+            requested_slot: passengers_count
+
+  children_count:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  trip_type:
+    type: text 
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: trip_type
+        conditions:
+          - active_loop: flight_search_form
+            requested_slot: trip_type
+  
+  return_date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+forms:
+  flight_search_form:
+    required_slots:
+      - departure_city
+      - destination_city
+      - departure_date 
+      - passengers_type  
+      - children_count
+      - trip_type
+      - return_date
+      - passengers_count         
+ 
+
+responses:
+  utter_ask_departure_city:
+    - text: "من أي مدينة تريد المغادرة؟"
+  utter_ask_destination_city:
+    - text: "إلى أي مدينة تريد الذهاب؟"
+  utter_ask_departure_date:
+    - text: "ما تاريخ السفر؟"
+  utter_ask_passengers_type:
+    - text: "هل تسافر وحدك أم مع العائلة؟"
+  utter_ask_children_count:
+    - text: "كم عدد الأطفال المرافقين؟ "
+  utter_ask_trip_type:
+    - text: "هل تريد الرحلة ذهاب فقط أم ذهاب وعودة؟"
+  utter_ask_return_date:
+    - text: "ما تاريخ العودة؟"     
+  utter_greet:
+    - text: "اهلا بك عزيزي , كيف يمكنني خدمتك اليوم؟"
+  utter_submit_flight_search:
+    - text: "جارٍ البحث عن الرحلات..."
+  utter_ask_rephrase:
+    - text: "لم أفهم قصدك، هل يمكنك إعادة صياغته؟"
+  utter_cancel:
+    - text: "تم إلغاء العملية. إذا احتجت مساعدة، أنا هنا!"
+  utter_ask_passengers_count: 
+    - text: "كم عدد المسافرين ؟"
+
+        
+actions:
+  - validate_flight_search_form
+  - action_submit_flight_search

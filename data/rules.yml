@@ -1,0 +1,42 @@
+version: "3.1"
+
+rules:
+
+# 🔹 تشغيل النموذج عند نية البحث
+- rule: تشغيل نموذج حجز الطيران
+  steps:
+    - intent: search_flight
+    - action: flight_search_form
+    - active_loop: flight_search_form
+
+# 🔹 تشغيل الأكشن بعد إكمال النموذج
+- rule: إكمال النموذج وتشغيل الأكشن
+  condition:
+    - active_loop: flight_search_form
+  steps:
+    - action: flight_search_form
+    - active_loop: null
+    - action: action_submit_flight_search
+
+# 🔹 fallback إذا كتب المستخدم شيء غير مفهوم
+- rule: التعامل مع رسائل غير مفهومة
+  steps:
+    - intent: nlu_fallback
+    - action: utter_ask_rephrase
+
+# 🔹 إلغاء النموذج عند نية "cancel"
+- rule: إلغاء النموذج عند الطلب
+  steps:
+    - intent: cancel
+    - action: utter_cancel
+    - action: action_deactivate_loop
+    - active_loop: null
+
+# 🔹 إعادة سؤال slot معين إذا كان الإدخال غير صالح
+- rule: إعادة طلب تاريخ العودة إذا القيمة غير صالحة
+  condition:
+    - active_loop: flight_search_form
+  steps:
+    - slot_was_set:
+        - return_date: null
+    - action: utter_ask_return_date

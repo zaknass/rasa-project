@@ -1,0 +1,83 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - مرحبا
+    - هاي 
+    - هاي كيف حالك؟
+    - الوو
+    - السلام عليكم 
+    - مساء الخير
+    - صباح العافية
+    
+- intent: search_flight
+  examples: |
+    - ابحث لي عن رحلة من [جدة](departure_city) إلى [دبي](destination_city)
+    - في طيران من [الرياض](departure_city) إلى [القاهرة](destination_city)؟
+    - هل توجد رحلات من [عدن](departure_city) إلى [اسطنبول](destination_city) يوم [الجمعة](departure_date)؟
+    - أرغب في حجز طيران من [صنعاء](departure_city) إلى [دبي](destination_city) بتاريخ [15 مايو](departure_date)
+- intent: provide_departure_city
+  examples: |
+    - اشتي من (departure_city)[جدة]
+    -  [عدن](departure_city)
+- intent:  provide_destination_city
+  examples: |
+    - الى (departure_date)[صنعاء] 
+    - [الاردن](destination_city)
+    - [مصر](destination_city)
+- intent: provide_departure_date
+  examples: |
+    - [الاسبوع الجاي](departure_date)
+    - [اقرب رحلة](departure_date)
+    - [ شهر ]بعد(departure_date)
+    - [15 محرم](departure_date)
+    - [برمضان](departure_date)
+    - [ثاني العيد](departure_date)
+    - [اقرب فرصة](departure_date)
+- intent: provide_passengers_type
+  examples: |
+    - [كبار](adult) 3 كبار و 2 (child)[اطفال] 
+    - [واحد](adult)
+    - {شخصين }(adult)
+    - [طفل](child) 
+    - [رضيع](infant)  
+    - [بالغ](adult)و [طفل](child)و [رضيع](infant)
+- intent: provide_children_count
+  examples: |
+    - طفل واحد
+    - اثنين أطفال
+    - معي 3 أطفال
+    - لا يوجد أطفال
+    - 0 أطفال
+- intent: provide_trip_type
+  examples: |
+    - (trip_type)[ذهاب] فقط
+    - [ذهاب و عودة](trip_type)
+    - [ذهاب فقط بدون رجعة](trip_type)
+    - [رايح وجاي](trip_type)
+- intent: provide_return_date
+  examples: |
+    - العودة بعد شهر 
+    - العودة في شعبان
+    - العودة 15 شوال
+    - ثالث العيد
+    - 15 يونيو
+    - 13 - 06
+    - 14\9
+- intent: provide_passengers_count
+  examples: |
+    - 3 
+    - 5 
+    - شخص
+    - شخصين
+
+entities:
+  - departure_city
+  - destination_city
+  - departure_date
+  - return_date
+  - trip_type
+  - children_count
+  - passengers_type
+  - passengers_count
+        

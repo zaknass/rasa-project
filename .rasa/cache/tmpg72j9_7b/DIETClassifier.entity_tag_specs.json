@@ -1,0 +1,44 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-departure_city",
+      "2": "I-departure_city",
+      "3": "L-departure_city",
+      "4": "U-departure_city",
+      "5": "B-departure_date",
+      "6": "I-departure_date",
+      "7": "L-departure_date",
+      "8": "U-departure_date",
+      "9": "B-destination_city",
+      "10": "I-destination_city",
+      "11": "L-destination_city",
+      "12": "U-destination_city",
+      "13": "B-infant",
+      "14": "I-infant",
+      "15": "L-infant",
+      "16": "U-infant",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-departure_city": 1,
+      "I-departure_city": 2,
+      "L-departure_city": 3,
+      "U-departure_city": 4,
+      "B-departure_date": 5,
+      "I-departure_date": 6,
+      "L-departure_date": 7,
+      "U-departure_date": 8,
+      "B-destination_city": 9,
+      "I-destination_city": 10,
+      "L-destination_city": 11,
+      "U-destination_city": 12,
+      "B-infant": 13,
+      "I-infant": 14,
+      "L-infant": 15,
+      "U-infant": 16,
+      "O": 0
+    },
+    "num_tags": 17
+  }
+]
