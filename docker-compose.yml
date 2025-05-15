@@ -1,0 +1,20 @@
+version: '3.0'
+services:
+  rasa:
+    image: rasa/rasa:3.6.12-full
+    ports:
+      - 5005:5005
+    volumes:
+      - ./:/app
+    command:
+     - run
+     - -m
+     - models
+     - --enable-api
+     - --cors
+     - '*'
+     - --port 5005
+  app:
+    image: ehtesham9023/tic8m8:rasa-bot
+    expose:
+      - 5055
