@@ -1,19 +1,11 @@
-FROM python:3.9
+FROM rasa/rasa-sdk:3.6.2
 
 WORKDIR /app
 
-# نسخ requirements فقط وتثبيتها
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+USER root
+RUN python -m pip install --upgrade pip
+RUN python -m pip install -r requirements.txt
+COPY ./actions /app/actions
 
-# نسخ كل ملفات المشروع
-COPY . .
 
-# تدريب نموذج Rasa
-RUN rasa train
-
-# إعلام Render أن البورت المفتوح هو 5005
-EXPOSE 5005
-
-# تشغيل السيرفر
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5005"]
+USER 1001
